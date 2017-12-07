@@ -1,25 +1,35 @@
+#!/usr/bin/env groovy
+properties([
+    [$class: 'GithubProjectProperty',
+    displayName: '',
+    projectUrlStr: 'https://github.com/Demo-projectsh/repo1.git'],
+    pipelineTriggers([
+    		upstream(
+		threshold: 'SUCCESS',
+		upstreamProjects: 'https://github.com/Demo-projectsh/repo2.git'
+	)])
+])
+
 pipeline {
-    agent any
+    agent any 
+
     stages {
-        stage('Checkout') {
-            steps {
-                echo 'checkout step'
+        stage('Build') { 
+            steps { 
+                sh 'pwd' 
             }
         }
-		
-        stage('Build') {
+        stage('Test'){
             steps {
-                
-                    echo 'Build step'
+                sh 'java -version'
                 
             }
-       	   }
-           
-	   stage('Deploy'){
-	       steps {
-		   echo 'deploy step'
-	        }
-	    }
-	   	   
-   }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'ls'
+                sh 'pwd'
+            }
+        }
+    }
 }
