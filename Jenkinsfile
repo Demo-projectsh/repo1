@@ -4,9 +4,9 @@ properties([
     displayName: '',
     projectUrlStr: 'https://github.com/Demo-projectsh/repo1.git'],
     pipelineTriggers([
-    		upstream(
+    		downstream(
 		threshold: 'SUCCESS',
-		upstreamProjects: 'https://github.com/Demo-projectsh/repo2.git'
+		downstreamProjects: 'https://github.com/Demo-projectsh/repo2.git'
 	)])
 ])
 
